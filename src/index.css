@@ -1,3 +1,53 @@
-main {
-  min-height: 70vh;
+body, nav {
+  background-color: rgb(247, 244, 244);
+}
+
+/* HEADER */
+/* Hero */
+.hero-section {
+  background-image: url("./assets/img/hero-img.jpg");
+  background-size: cover;
+  background-position: left;
+  padding: 120px 0;
+  color: white;
+  position: relative;
+  height: calc(0.4 * 100vw);
+
+}
+
+.hero-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  opacity: 0.9;
+}
+
+/* Feature cards */
+.feature-card {
+  border: none;
+  background: #f8f9fa;
+  transition: transform 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.emoji {
+  font-size: 2.5rem;
 }

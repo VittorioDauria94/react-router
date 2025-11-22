@@ -4,10 +4,10 @@ import navLink from "../assets/data/navLink";
 export default function Header() {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <NavLink className="navbar-brand" to={navLink[0].path}>
-            Navbar
+      <nav className="navbar navbar-expand-lg">
+        <div className="container">
+          <NavLink className="navbar-brand fw-bold" to="/">
+            Boolean Store
           </NavLink>
           <button
             className="navbar-toggler"
