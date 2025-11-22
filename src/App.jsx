@@ -1,0 +1,23 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import DefaultPage from "./layout/DefaultPage";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Products from "./pages/Products";
+
+function App() {
+  return (
+    <>
+      <BrowserRouter>
+      <Routes >
+        <Route element={<DefaultPage />}>
+        <Route path="/" element={<Home />}/>
+        <Route path="/about" element={<About />}/>
+        <Route path="/products" element={<Products />}/>
+        </Route>
+      </Routes>
+      </BrowserRouter>
+    </>
+  );
+}
+
+export default App;
