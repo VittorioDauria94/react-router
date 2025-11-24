@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Stars from "../components/Stars";
+import Loader from "../components/Loader";
+import InnerImageZoom from "react-inner-image-zoom";
 
 export default function ProductDetails() {
   const [product, setProduct] = useState(null);
@@ -20,7 +22,7 @@ export default function ProductDetails() {
 
   return (
     <div className="container py-5 product-page">
-      {product && (
+      {product ? (
         <>
           <button
             className="btn btn-outline-secondary mb-4"
@@ -35,8 +37,10 @@ export default function ProductDetails() {
                 <span className="product-category-badge">
                   {product.category}
                 </span>
-                <img
+                <InnerImageZoom
                   src={product.image}
+                  zoomSrc={product.image}
+                  zoomScale={1.5}
                   alt={`Immagine di ${product.title}`}
                   className="product-detail-image"
                 />
@@ -58,6 +62,8 @@ export default function ProductDetails() {
             </div>
           </div>
         </>
+      ) : (
+        <Loader />
       )}
     </div>
   );
