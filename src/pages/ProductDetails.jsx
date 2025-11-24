@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Stars from "../components/Stars";
 
 export default function ProductDetails() {
   const [product, setProduct] = useState(null);
@@ -10,10 +11,54 @@ export default function ProductDetails() {
   useEffect(() => {
     axios
       .get(`https://fakestoreapi.com/products/${id}`)
-      .then((resp) => setProduct(resp.data));
+      .then((resp) =>
+        Object.keys(resp.data).length === 0
+          ? navigate("/products")
+          : setProduct(resp.data)
+      );
   }, [id]);
 
   return (
-    <div className="container">{product && <h1>{product.title}</h1>} </div>
+    <div className="container py-5 product-page">
+      {product && (
+        <>
+          <button
+            className="btn btn-outline-secondary mb-4"
+            onClick={() => navigate(-1)}
+          >
+            ← Indietro
+          </button>
+
+          <div className="row g-5">
+            <div className="col-md-6 d-flex justify-content-center">
+              <div className="product-detail-image-wrapper position-relative">
+                <span className="product-category-badge">
+                  {product.category}
+                </span>
+                <img
+                  src={product.image}
+                  alt={`Immagine di ${product.title}`}
+                  className="product-detail-image"
+                />
+              </div>
+            </div>
+            <div className="col-md-6">
+              <h1 className="product-detail-title">{product.title}</h1>
+              <div className="d-flex align-items-center mb-2">
+                <Stars rating={product.rating.rate} />
+                <span className="ms-2 text-muted">
+                  ({product.rating.count} reviews)
+                </span>
+              </div>
+              <h2 className="product-detail-price">${product.price}</h2>
+              <p className="product-description mt-4">{product.description}</p>
+              <button className="btn btn-primary btn-lg px-4 mt-3">
+                Aggiungi al carrello
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
   );
 }
